@@ -1,4 +1,5 @@
 
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Fix: Check for `process` and `process.env` to prevent crashes in environments where they are not defined.
             if (typeof process === 'undefined' || !process.env || !process.env.API_KEY) {
-                showNotificationModal("ต้องการ API Key", "ไม่พบ Gemini API Key ใน Environment Variables (process.env.API_KEY) กรุณาตั้งค่าก่อนใช้งานฟังก์ชัน AI");
+                showNotificationModal("ต้องการ API Key", "ไม่สามารถใช้งานฟังก์ชัน AI ได้ เนื่องจากไม่ได้ตั้งค่า Gemini API Key สำหรับเวอร์ชันที่อยู่บนเว็บ (GitHub Pages)\n\nสาเหตุ: `process.env.API_KEY` ไม่สามารถทำงานได้โดยตรงในเบราว์เซอร์\n\nวิธีแก้ไข: กรุณาตั้งค่า Repository Secret ใน GitHub และใช้ GitHub Actions เพื่อ Build โปรเจกต์ก่อน Deploy เพื่อให้ API Key ถูกฝังลงในโค้ดอย่างปลอดภัย");
                 return false;
             }
             genAI = new GoogleGenAI({ apiKey: process.env.API_KEY });
