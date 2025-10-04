@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -36,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initializeGemini() {
         try {
-            if (!process.env.API_KEY) {
+            // Fix: Check for `process` and `process.env` to prevent crashes in environments where they are not defined.
+            if (typeof process === 'undefined' || !process.env || !process.env.API_KEY) {
                 showNotificationModal("ต้องการ API Key", "ไม่พบ Gemini API Key ใน Environment Variables (process.env.API_KEY) กรุณาตั้งค่าก่อนใช้งานฟังก์ชัน AI");
                 return false;
             }
